@@ -15,6 +15,7 @@ from pydantic import BaseModel, Field
 from starlette.middleware.cors import CORSMiddleware
 
 from ai_agents.agents import AgentConfig, ChatAgent, SearchAgent
+from baby_generator import BabyImageGenerator
 
 
 logging.basicConfig(
@@ -65,6 +66,42 @@ class SearchResponse(BaseModel):
     error: Optional[str] = None
 
 
+class BabyGenerateRequest(BaseModel):
+    name: str
+
+
+class BabyGenerateResponse(BaseModel):
+    success: bool
+    image_id: str
+    image_data: Optional[str] = None
+    error: Optional[str] = None
+
+
+class AgeProgressRequest(BaseModel):
+    image_id: str
+    name: str
+    age_group: str
+
+
+class AgeProgressResponse(BaseModel):
+    success: bool
+    image_data: Optional[str] = None
+    age_group: str
+    error: Optional[str] = None
+
+
+class WatermarkRequest(BaseModel):
+    image_data: str
+    name: str
+    age: str
+
+
+class WatermarkResponse(BaseModel):
+    success: bool
+    watermarked_image: Optional[str] = None
+    error: Optional[str] = None
+
+
 def _ensure_db(request: Request):
     try:
         return request.app.state.db
@@ -93,6 +130,13 @@ async def _get_or_create_agent(request: Request, agent_type: str):
         raise HTTPException(status_code=400, detail=f"Unknown agent type '{agent_type}'")
 
     return cache[agent_type]
+
+
+def _get_baby_generator(request: Request) -> BabyImageGenerator:
+    if not hasattr(request.app.state, "baby_generator"):
+        config: AgentConfig = request.app.state.agent_config
+        request.app.state.baby_generator = BabyImageGenerator(config)
+    return request.app.state.baby_generator
 
 
 @asynccontextmanager
@@ -234,6 +278,141 @@ async def get_agent_capabilities(request: Request):
     except Exception as exc:  # pragma: no cover - defensive
         logger.exception("Error getting capabilities")
         return {"success": False, "error": str(exc)}
+
+
+@api_router.post("/baby/generate", response_model=BabyGenerateResponse)
+async def generate_baby_image(baby_request: BabyGenerateRequest, request: Request):
+    """Generate a photorealistic baby image from a name."""
+    try:
+        db = _ensure_db(request)
+        generator = _get_baby_generator(request)
+
+        # Generate baby image
+        image_data = await generator.generate_baby_image(baby_request.name)
+
+        if not image_data:
+            return BabyGenerateResponse(
+                success=False,
+                image_id="",
+                error="Failed to generate baby image"
+            )
+
+        # Create image record
+        image_id = str(uuid.uuid4())
+        baby_record = {
+            "_id": image_id,
+            "name": baby_request.name,
+            "original_image": image_data,
+            "age_versions": {},
+            "created_at": datetime.now(timezone.utc)
+        }
+
+        await db.baby_images.insert_one(baby_record)
+
+        return BabyGenerateResponse(
+            success=True,
+            image_id=image_id,
+            image_data=image_data
+        )
+
+    except HTTPException:
+        raise
+    except Exception as exc:
+        logger.exception("Error generating baby image")
+        return BabyGenerateResponse(
+            success=False,
+            image_id="",
+            error=str(exc)
+        )
+
+
+@api_router.post("/baby/age-progress", response_model=AgeProgressResponse)
+async def age_progress_image(age_request: AgeProgressRequest, request: Request):
+    """Generate an age-progressed version of the baby."""
+    try:
+        db = _ensure_db(request)
+        generator = _get_baby_generator(request)
+
+        # Check if we already have this age version cached
+        baby_record = await db.baby_images.find_one({"_id": age_request.image_id})
+
+        if not baby_record:
+            return AgeProgressResponse(
+                success=False,
+                age_group=age_request.age_group,
+                error="Baby image not found"
+            )
+
+        # Check cache first
+        age_versions = baby_record.get("age_versions", {})
+        if age_request.age_group in age_versions:
+            return AgeProgressResponse(
+                success=True,
+                image_data=age_versions[age_request.age_group],
+                age_group=age_request.age_group
+            )
+
+        # Generate aged image
+        aged_image = await generator.generate_aged_image(
+            age_request.name,
+            age_request.age_group
+        )
+
+        if not aged_image:
+            return AgeProgressResponse(
+                success=False,
+                age_group=age_request.age_group,
+                error="Failed to generate aged image"
+            )
+
+        # Cache the result
+        await db.baby_images.update_one(
+            {"_id": age_request.image_id},
+            {"$set": {f"age_versions.{age_request.age_group}": aged_image}}
+        )
+
+        return AgeProgressResponse(
+            success=True,
+            image_data=aged_image,
+            age_group=age_request.age_group
+        )
+
+    except HTTPException:
+        raise
+    except Exception as exc:
+        logger.exception("Error generating aged image")
+        return AgeProgressResponse(
+            success=False,
+            age_group=age_request.age_group,
+            error=str(exc)
+        )
+
+
+@api_router.post("/baby/watermark", response_model=WatermarkResponse)
+async def add_watermark_to_image(watermark_request: WatermarkRequest, request: Request):
+    """Add name and age watermark to the image."""
+    try:
+        generator = _get_baby_generator(request)
+
+        watermarked_image = generator.add_watermark(
+            watermark_request.image_data,
+            watermark_request.name,
+            watermark_request.age
+        )
+
+        return WatermarkResponse(
+            success=True,
+            watermarked_image=watermarked_image
+        )
+
+    except HTTPException:
+        raise
+    except Exception as exc:
+        logger.exception("Error adding watermark")
+        return WatermarkResponse(
+            success=False,
+            error=str(exc)
+        )
 
 
 app.include_router(api_router)
