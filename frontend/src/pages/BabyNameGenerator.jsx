@@ -134,82 +134,82 @@ export default function BabyNameGenerator() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 py-12 px-4">
+    <div className="min-h-screen bg-slate-50 py-12 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Hero Section */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
+          <div className="inline-flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-semibold mb-6">
             <Zap className="w-4 h-4" />
             100% FREE FOREVER • NO SIGN-UP REQUIRED
           </div>
           <div className="flex items-center justify-center gap-3 mb-6">
-            <Sparkles className="w-12 h-12 text-purple-600" />
-            <h1 className="text-6xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+            <Sparkles className="w-12 h-12 text-blue-600" />
+            <h1 className="text-6xl font-bold text-slate-900">
               Baby Face Visualizer
             </h1>
           </div>
-          <p className="text-2xl text-gray-700 mb-4 font-medium">
+          <p className="text-2xl text-slate-700 mb-4 font-medium">
             The #1 AI-Powered Baby Image Generator
           </p>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-8">
+          <p className="text-lg text-slate-600 max-w-3xl mx-auto mb-8">
             Transform your baby name into stunning photorealistic images with advanced AI technology. Watch them grow from baby to adult instantly – completely free, no strings attached!
           </p>
 
           {/* Stats Bar */}
           <div className="flex flex-wrap justify-center gap-8 mb-8">
             <div className="flex items-center gap-2">
-              <Users className="w-5 h-5 text-purple-600" />
-              <span className="text-gray-700 font-semibold">50,000+ Parents Trust Us</span>
+              <Users className="w-5 h-5 text-blue-600" />
+              <span className="text-slate-700 font-semibold">50,000+ Parents Trust Us</span>
             </div>
             <div className="flex items-center gap-2">
-              <Star className="w-5 h-5 text-yellow-500 fill-yellow-500" />
-              <span className="text-gray-700 font-semibold">4.9/5 Rating</span>
+              <Star className="w-5 h-5 text-amber-500 fill-amber-500" />
+              <span className="text-slate-700 font-semibold">4.9/5 Rating</span>
             </div>
             <div className="flex items-center gap-2">
-              <Award className="w-5 h-5 text-purple-600" />
-              <span className="text-gray-700 font-semibold">Award-Winning Technology</span>
+              <Award className="w-5 h-5 text-blue-600" />
+              <span className="text-slate-700 font-semibold">Award-Winning Technology</span>
             </div>
           </div>
         </div>
 
         {/* Key Features */}
         <div className="grid md:grid-cols-3 gap-6 mb-16">
-          <Card className="border-2 border-purple-100 hover:border-purple-300 transition-all">
+          <Card className="border-2 border-slate-200 hover:border-blue-500 transition-all bg-white">
             <CardContent className="pt-6">
               <div className="flex flex-col items-center text-center">
-                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-4">
-                  <Sparkles className="w-8 h-8 text-purple-600" />
+                <div className="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                  <Sparkles className="w-8 h-8 text-blue-600" />
                 </div>
-                <h3 className="text-xl font-bold mb-2">Photorealistic AI</h3>
-                <p className="text-gray-600">
+                <h3 className="text-xl font-bold mb-2 text-slate-900">Photorealistic AI</h3>
+                <p className="text-slate-600">
                   Industry-leading AI generates incredibly lifelike baby images that look professionally photographed
                 </p>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="border-2 border-pink-100 hover:border-pink-300 transition-all">
+          <Card className="border-2 border-slate-200 hover:border-blue-500 transition-all bg-white">
             <CardContent className="pt-6">
               <div className="flex flex-col items-center text-center">
-                <div className="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mb-4">
-                  <Zap className="w-8 h-8 text-pink-600" />
+                <div className="w-16 h-16 bg-emerald-100 rounded-lg flex items-center justify-center mb-4">
+                  <Zap className="w-8 h-8 text-emerald-600" />
                 </div>
-                <h3 className="text-xl font-bold mb-2">Instant Results</h3>
-                <p className="text-gray-600">
+                <h3 className="text-xl font-bold mb-2 text-slate-900">Instant Results</h3>
+                <p className="text-slate-600">
                   No waiting around – get your baby's image in seconds with our lightning-fast AI processing
                 </p>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="border-2 border-blue-100 hover:border-blue-300 transition-all">
+          <Card className="border-2 border-slate-200 hover:border-blue-500 transition-all bg-white">
             <CardContent className="pt-6">
               <div className="flex flex-col items-center text-center">
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
-                  <Heart className="w-8 h-8 text-blue-600" />
+                <div className="w-16 h-16 bg-amber-100 rounded-lg flex items-center justify-center mb-4">
+                  <Heart className="w-8 h-8 text-amber-600" />
                 </div>
-                <h3 className="text-xl font-bold mb-2">Age Progression</h3>
-                <p className="text-gray-600">
+                <h3 className="text-xl font-bold mb-2 text-slate-900">Age Progression</h3>
+                <p className="text-slate-600">
                   Watch your baby grow up before your eyes – see them at baby, child, teen, and adult stages
                 </p>
               </div>
@@ -218,9 +218,9 @@ export default function BabyNameGenerator() {
         </div>
 
         {/* CTA Section */}
-        <div className="bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl p-8 mb-16 text-white text-center">
+        <div className="bg-blue-600 rounded-xl p-8 mb-16 text-white text-center shadow-lg">
           <h2 className="text-3xl font-bold mb-4">Try It Now – Absolutely Free!</h2>
-          <p className="text-lg mb-6 opacity-90">
+          <p className="text-lg mb-6">
             Join thousands of parents who've already visualized their baby's future. No credit card, no email, no catch!
           </p>
           <div className="flex flex-wrap justify-center gap-4">
@@ -247,16 +247,16 @@ export default function BabyNameGenerator() {
         <div className="grid md:grid-cols-2 gap-8 mb-16">
           {/* Left Column - Input and Controls */}
           <div className="space-y-6">
-            <Card className="border-2 border-purple-200">
+            <Card className="border-2 border-slate-200 shadow-md bg-white">
               <CardHeader>
-                <CardTitle className="text-2xl">Create Your Baby Image</CardTitle>
-                <CardDescription className="text-base">
+                <CardTitle className="text-2xl text-slate-900">Create Your Baby Image</CardTitle>
+                <CardDescription className="text-base text-slate-600">
                   Enter a baby name to generate a unique, photorealistic image powered by cutting-edge AI
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="name">Baby's Name</Label>
+                  <Label htmlFor="name" className="text-slate-700">Baby's Name</Label>
                   <Input
                     id="name"
                     placeholder="Enter a name..."
@@ -264,14 +264,14 @@ export default function BabyNameGenerator() {
                     onChange={(e) => setName(e.target.value)}
                     onKeyPress={(e) => e.key === 'Enter' && generateBabyImage()}
                     disabled={loading}
-                    className="text-lg"
+                    className="text-lg border-slate-300"
                   />
                 </div>
 
                 <Button
                   onClick={generateBabyImage}
                   disabled={loading || !name.trim()}
-                  className="w-full h-12 text-lg bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
+                  className="w-full h-12 text-lg bg-blue-600 hover:bg-blue-700 text-white"
                 >
                   {loading ? (
                     <>
@@ -290,10 +290,10 @@ export default function BabyNameGenerator() {
 
             {/* Age Toggle */}
             {imageId && (
-              <Card>
+              <Card className="border-2 border-slate-200 shadow-md bg-white">
                 <CardHeader>
-                  <CardTitle>Age Progression</CardTitle>
-                  <CardDescription>
+                  <CardTitle className="text-slate-900">Age Progression</CardTitle>
+                  <CardDescription className="text-slate-600">
                     See how {name} looks at different ages
                   </CardDescription>
                 </CardHeader>
@@ -305,7 +305,7 @@ export default function BabyNameGenerator() {
                         variant={selectedAge === ageGroup.id ? 'default' : 'outline'}
                         onClick={() => changeAge(ageGroup.id)}
                         disabled={ageLoading[ageGroup.id]}
-                        className="h-14"
+                        className={`h-14 ${selectedAge === ageGroup.id ? 'bg-blue-600 hover:bg-blue-700 text-white' : 'border-slate-300 text-slate-700 hover:bg-slate-50'}`}
                       >
                         {ageLoading[ageGroup.id] ? (
                           <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -320,15 +320,15 @@ export default function BabyNameGenerator() {
 
             {/* Actions */}
             {imageId && currentImage && (
-              <Card>
+              <Card className="border-2 border-slate-200 shadow-md bg-white">
                 <CardHeader>
-                  <CardTitle>Actions</CardTitle>
+                  <CardTitle className="text-slate-900">Actions</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
                   <Button
                     onClick={downloadImage}
                     disabled={downloadLoading}
-                    className="w-full h-12 bg-green-600 hover:bg-green-700"
+                    className="w-full h-12 bg-emerald-600 hover:bg-emerald-700 text-white"
                   >
                     {downloadLoading ? (
                       <>
@@ -346,7 +346,7 @@ export default function BabyNameGenerator() {
                   <Button
                     onClick={regenerate}
                     variant="outline"
-                    className="w-full h-12"
+                    className="w-full h-12 border-slate-300 text-slate-700 hover:bg-slate-50"
                   >
                     <RefreshCw className="mr-2 h-5 w-5" />
                     Start Over
@@ -358,35 +358,35 @@ export default function BabyNameGenerator() {
 
           {/* Right Column - Image Display */}
           <div>
-            <Card className="h-full">
+            <Card className="h-full border-2 border-slate-200 shadow-md bg-white">
               <CardHeader>
-                <CardTitle>
+                <CardTitle className="text-slate-900">
                   {imageId ? `${name} - ${AGE_GROUPS.find(a => a.id === selectedAge)?.ageText}` : 'Preview'}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 {error && (
-                  <Alert variant="destructive" className="mb-4">
-                    <AlertDescription>{error}</AlertDescription>
+                  <Alert variant="destructive" className="mb-4 border-red-200 bg-red-50">
+                    <AlertDescription className="text-red-800">{error}</AlertDescription>
                   </Alert>
                 )}
 
                 {currentImage ? (
                   <div className="space-y-4">
-                    <div className="relative aspect-square rounded-lg overflow-hidden bg-gray-100">
+                    <div className="relative aspect-square rounded-lg overflow-hidden bg-slate-100 border-2 border-slate-200">
                       <img
                         src={`data:image/jpeg;base64,${currentImage}`}
                         alt={`${name} - ${selectedAge}`}
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    <p className="text-sm text-gray-500 text-center">
+                    <p className="text-sm text-slate-500 text-center">
                       Click an age button to see {name} at different life stages
                     </p>
                   </div>
                 ) : (
-                  <div className="aspect-square rounded-lg bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
-                    <div className="text-center text-gray-400 p-8">
+                  <div className="aspect-square rounded-lg bg-slate-100 border-2 border-slate-200 flex items-center justify-center">
+                    <div className="text-center text-slate-400 p-8">
                       <Sparkles className="w-16 h-16 mx-auto mb-4 opacity-50" />
                       <p className="text-lg">Enter a name and click generate to see your baby</p>
                     </div>
@@ -399,73 +399,73 @@ export default function BabyNameGenerator() {
 
         {/* Testimonials Section */}
         <div className="mb-16">
-          <h2 className="text-4xl font-bold text-center mb-4">What Parents Are Saying</h2>
-          <p className="text-center text-gray-600 mb-12 text-lg">
+          <h2 className="text-4xl font-bold text-center mb-4 text-slate-900">What Parents Are Saying</h2>
+          <p className="text-center text-slate-600 mb-12 text-lg">
             Real reviews from thousands of satisfied users
           </p>
 
           <div className="grid md:grid-cols-3 gap-6">
-            <Card className="border-2 border-purple-100">
+            <Card className="border-2 border-slate-200 shadow-md bg-white">
               <CardContent className="pt-6">
                 <div className="flex gap-1 mb-4">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-yellow-500 text-yellow-500" />
+                    <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
                   ))}
                 </div>
-                <p className="text-gray-700 mb-4 italic">
+                <p className="text-slate-700 mb-4 italic">
                   "This is absolutely incredible! I tried it for my baby's name and was blown away by how realistic the images looked. The age progression feature is genius!"
                 </p>
-                <p className="font-semibold text-gray-900">Sarah M.</p>
-                <p className="text-sm text-gray-500">Expecting Mother</p>
+                <p className="font-semibold text-slate-900">Sarah M.</p>
+                <p className="text-sm text-slate-500">Expecting Mother</p>
               </CardContent>
             </Card>
 
-            <Card className="border-2 border-pink-100">
+            <Card className="border-2 border-slate-200 shadow-md bg-white">
               <CardContent className="pt-6">
                 <div className="flex gap-1 mb-4">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-yellow-500 text-yellow-500" />
+                    <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
                   ))}
                 </div>
-                <p className="text-gray-700 mb-4 italic">
+                <p className="text-slate-700 mb-4 italic">
                   "I've tried other baby name generators, but nothing comes close to this. The AI quality is outstanding, and it's completely free! Shared it with all my pregnant friends."
                 </p>
-                <p className="font-semibold text-gray-900">Michael T.</p>
-                <p className="text-sm text-gray-500">New Parent</p>
+                <p className="font-semibold text-slate-900">Michael T.</p>
+                <p className="text-sm text-slate-500">New Parent</p>
               </CardContent>
             </Card>
 
-            <Card className="border-2 border-blue-100">
+            <Card className="border-2 border-slate-200 shadow-md bg-white">
               <CardContent className="pt-6">
                 <div className="flex gap-1 mb-4">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-yellow-500 text-yellow-500" />
+                    <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
                   ))}
                 </div>
-                <p className="text-gray-700 mb-4 italic">
+                <p className="text-slate-700 mb-4 italic">
                   "We were debating between two names and this helped us visualize both options. The results were so professional and beautiful. Highly recommend!"
                 </p>
-                <p className="font-semibold text-gray-900">Emily & James R.</p>
-                <p className="text-sm text-gray-500">Parents-to-be</p>
+                <p className="font-semibold text-slate-900">Emily & James R.</p>
+                <p className="text-sm text-slate-500">Parents-to-be</p>
               </CardContent>
             </Card>
           </div>
         </div>
 
         {/* Why Choose Us Section */}
-        <div className="bg-white rounded-2xl p-10 mb-16 shadow-lg">
-          <h2 className="text-4xl font-bold text-center mb-12">Why Baby Face Visualizer?</h2>
+        <div className="bg-white rounded-xl p-10 mb-16 shadow-lg border-2 border-slate-200">
+          <h2 className="text-4xl font-bold text-center mb-12 text-slate-900">Why Baby Face Visualizer?</h2>
 
           <div className="grid md:grid-cols-2 gap-8">
             <div className="flex gap-4">
               <div className="flex-shrink-0">
-                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-                  <CheckCircle className="w-6 h-6 text-green-600" />
+                <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center">
+                  <CheckCircle className="w-6 h-6 text-emerald-600" />
                 </div>
               </div>
               <div>
-                <h3 className="text-xl font-bold mb-2">State-of-the-Art AI Technology</h3>
-                <p className="text-gray-600">
+                <h3 className="text-xl font-bold mb-2 text-slate-900">State-of-the-Art AI Technology</h3>
+                <p className="text-slate-600">
                   We use the latest AI models to generate photorealistic images that look like professional baby photos, not cartoons or sketches.
                 </p>
               </div>
@@ -473,13 +473,13 @@ export default function BabyNameGenerator() {
 
             <div className="flex gap-4">
               <div className="flex-shrink-0">
-                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-                  <CheckCircle className="w-6 h-6 text-green-600" />
+                <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center">
+                  <CheckCircle className="w-6 h-6 text-emerald-600" />
                 </div>
               </div>
               <div>
-                <h3 className="text-xl font-bold mb-2">Completely Free Forever</h3>
-                <p className="text-gray-600">
+                <h3 className="text-xl font-bold mb-2 text-slate-900">Completely Free Forever</h3>
+                <p className="text-slate-600">
                   No hidden fees, no subscriptions, no premium tiers. We believe every parent should have access to this amazing technology at no cost.
                 </p>
               </div>
@@ -487,13 +487,13 @@ export default function BabyNameGenerator() {
 
             <div className="flex gap-4">
               <div className="flex-shrink-0">
-                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-                  <CheckCircle className="w-6 h-6 text-green-600" />
+                <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center">
+                  <CheckCircle className="w-6 h-6 text-emerald-600" />
                 </div>
               </div>
               <div>
-                <h3 className="text-xl font-bold mb-2">Privacy First</h3>
-                <p className="text-gray-600">
+                <h3 className="text-xl font-bold mb-2 text-slate-900">Privacy First</h3>
+                <p className="text-slate-600">
                   No account required, no personal data collected. Generate images anonymously and download them instantly to your device.
                 </p>
               </div>
@@ -501,13 +501,13 @@ export default function BabyNameGenerator() {
 
             <div className="flex gap-4">
               <div className="flex-shrink-0">
-                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-                  <CheckCircle className="w-6 h-6 text-green-600" />
+                <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center">
+                  <CheckCircle className="w-6 h-6 text-emerald-600" />
                 </div>
               </div>
               <div>
-                <h3 className="text-xl font-bold mb-2">Unique Age Progression</h3>
-                <p className="text-gray-600">
+                <h3 className="text-xl font-bold mb-2 text-slate-900">Unique Age Progression</h3>
+                <p className="text-slate-600">
                   See your baby at 4 different life stages – baby, child, teen, and adult. Perfect for sharing with family or keeping as a keepsake.
                 </p>
               </div>
@@ -516,19 +516,19 @@ export default function BabyNameGenerator() {
         </div>
 
         {/* Final CTA */}
-        <div className="text-center bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-12">
-          <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+        <div className="text-center bg-blue-50 rounded-xl p-12 border-2 border-blue-100">
+          <h2 className="text-4xl font-bold mb-4 text-slate-900">
             Ready to Meet Your Baby?
           </h2>
-          <p className="text-xl text-gray-700 mb-6">
+          <p className="text-xl text-slate-700 mb-6">
             Start generating beautiful, photorealistic baby images in seconds
           </p>
-          <p className="text-lg text-gray-600 mb-8">
+          <p className="text-lg text-slate-600 mb-8">
             Trusted by 50,000+ parents worldwide • 100% Free • No Sign-Up Required
           </p>
           <Button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="h-14 px-8 text-lg bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
+            className="h-14 px-8 text-lg bg-blue-600 hover:bg-blue-700 text-white shadow-lg"
           >
             <Sparkles className="mr-2 h-6 w-6" />
             Get Started Free
@@ -536,8 +536,8 @@ export default function BabyNameGenerator() {
         </div>
 
         {/* Footer */}
-        <div className="text-center mt-12 text-gray-500 text-sm space-y-2">
-          <p className="font-semibold text-gray-700 text-base">
+        <div className="text-center mt-12 text-slate-500 text-sm space-y-2">
+          <p className="font-semibold text-slate-700 text-base">
             Powered by Advanced AI Technology • Trusted by Parents Worldwide
           </p>
           <p>
