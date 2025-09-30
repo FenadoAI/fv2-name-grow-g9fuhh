@@ -3,6 +3,7 @@
 import logging
 import os
 import uuid
+import hashlib
 from contextlib import asynccontextmanager
 from datetime import datetime, timezone
 from pathlib import Path
@@ -99,6 +100,36 @@ class WatermarkRequest(BaseModel):
 class WatermarkResponse(BaseModel):
     success: bool
     watermarked_image: Optional[str] = None
+    error: Optional[str] = None
+
+
+class LinkTrackRequest(BaseModel):
+    link_id: Optional[str] = None
+    action: str  # 'click', 'view', 'generate', 'download'
+    metadata: Optional[dict] = None
+
+
+class LinkTrackResponse(BaseModel):
+    success: bool
+    link_id: str
+    total_clicks: int
+    error: Optional[str] = None
+
+
+class UserRegisterRequest(BaseModel):
+    username: str
+    password: str
+
+
+class UserLoginRequest(BaseModel):
+    username: str
+    password: str
+
+
+class UserResponse(BaseModel):
+    success: bool
+    username: Optional[str] = None
+    user_id: Optional[str] = None
     error: Optional[str] = None
 
 
@@ -410,6 +441,166 @@ async def add_watermark_to_image(watermark_request: WatermarkRequest, request: R
     except Exception as exc:
         logger.exception("Error adding watermark")
         return WatermarkResponse(
+            success=False,
+            error=str(exc)
+        )
+
+
+@api_router.post("/track", response_model=LinkTrackResponse)
+async def track_link(track_request: LinkTrackRequest, request: Request):
+    """Track link clicks and actions. Tool remains free - tracking is for analytics only."""
+    try:
+        db = _ensure_db(request)
+
+        # Generate or use existing link_id
+        link_id = track_request.link_id or str(uuid.uuid4())
+
+        # Create tracking record
+        track_record = {
+            "link_id": link_id,
+            "action": track_request.action,
+            "metadata": track_request.metadata or {},
+            "timestamp": datetime.now(timezone.utc),
+            "ip_address": request.client.host if request.client else "unknown"
+        }
+
+        await db.link_tracking.insert_one(track_record)
+
+        # Get total clicks for this link
+        total_clicks = await db.link_tracking.count_documents({"link_id": link_id})
+
+        return LinkTrackResponse(
+            success=True,
+            link_id=link_id,
+            total_clicks=total_clicks
+        )
+
+    except HTTPException:
+        raise
+    except Exception as exc:
+        logger.exception("Error tracking link")
+        return LinkTrackResponse(
+            success=False,
+            link_id=track_request.link_id or "",
+            total_clicks=0,
+            error=str(exc)
+        )
+
+
+@api_router.get("/track/{link_id}")
+async def get_link_stats(link_id: str, request: Request):
+    """Get statistics for a tracked link. Free tool - stats available to all users."""
+    try:
+        db = _ensure_db(request)
+
+        # Get all tracking records for this link
+        records = await db.link_tracking.find({"link_id": link_id}).to_list(10000)
+
+        # Calculate stats
+        total_clicks = len(records)
+        action_breakdown = {}
+        for record in records:
+            action = record.get("action", "unknown")
+            action_breakdown[action] = action_breakdown.get(action, 0) + 1
+
+        return {
+            "success": True,
+            "link_id": link_id,
+            "total_clicks": total_clicks,
+            "action_breakdown": action_breakdown,
+            "first_click": records[0]["timestamp"] if records else None,
+            "last_click": records[-1]["timestamp"] if records else None
+        }
+
+    except HTTPException:
+        raise
+    except Exception as exc:
+        logger.exception("Error getting link stats")
+        return {
+            "success": False,
+            "link_id": link_id,
+            "error": str(exc)
+        }
+
+
+@api_router.post("/auth/register", response_model=UserResponse)
+async def register_user(user_request: UserRegisterRequest, request: Request):
+    """Register a new user. Free tool - optional registration for saving preferences."""
+    try:
+        db = _ensure_db(request)
+
+        # Check if username already exists
+        existing_user = await db.users.find_one({"username": user_request.username})
+        if existing_user:
+            return UserResponse(
+                success=False,
+                error="Username already exists"
+            )
+
+        # Hash password
+        password_hash = hashlib.sha256(user_request.password.encode()).hexdigest()
+
+        # Create user record
+        user_id = str(uuid.uuid4())
+        user_record = {
+            "_id": user_id,
+            "username": user_request.username,
+            "password_hash": password_hash,
+            "created_at": datetime.now(timezone.utc),
+            "is_premium": False  # All users are free, field kept for future use
+        }
+
+        await db.users.insert_one(user_record)
+
+        return UserResponse(
+            success=True,
+            username=user_request.username,
+            user_id=user_id
+        )
+
+    except HTTPException:
+        raise
+    except Exception as exc:
+        logger.exception("Error registering user")
+        return UserResponse(
+            success=False,
+            error=str(exc)
+        )
+
+
+@api_router.post("/auth/login", response_model=UserResponse)
+async def login_user(user_request: UserLoginRequest, request: Request):
+    """Login user. Free tool - optional login for accessing saved images."""
+    try:
+        db = _ensure_db(request)
+
+        # Find user
+        user = await db.users.find_one({"username": user_request.username})
+        if not user:
+            return UserResponse(
+                success=False,
+                error="Invalid username or password"
+            )
+
+        # Check password
+        password_hash = hashlib.sha256(user_request.password.encode()).hexdigest()
+        if user["password_hash"] != password_hash:
+            return UserResponse(
+                success=False,
+                error="Invalid username or password"
+            )
+
+        return UserResponse(
+            success=True,
+            username=user["username"],
+            user_id=user["_id"]
+        )
+
+    except HTTPException:
+        raise
+    except Exception as exc:
+        logger.exception("Error logging in user")
+        return UserResponse(
             success=False,
             error=str(exc)
         )

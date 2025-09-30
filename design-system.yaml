@@ -1,0 +1,293 @@
+# Baby Face Visualizer Design System
+# Professional landing page design specification
+
+# Color Palette (Dark Mode Ready)
+colors:
+  # Base Colors
+  background:
+    light: "#F8FAFC"  # slate-50
+    dark: "#121212"   # near-black base
+
+  surface:
+    light: "#FFFFFF"  # white
+    dark: "#1E1E1E"   # elevated dark surface
+
+  # Text Colors
+  text:
+    primary_light: "#0F172A"    # slate-900
+    primary_dark: "#E0E0E0"     # off-white, lighter weight
+    secondary_light: "#475569"  # slate-600
+    secondary_dark: "#A0A0A0"   # medium gray
+    tertiary_light: "#64748B"   # slate-500
+    tertiary_dark: "#808080"    # light gray
+
+  # Brand Colors
+  brand:
+    primary: "#2563EB"      # blue-600
+    primary_hover: "#1D4ED8" # blue-700
+    primary_light: "#DBEAFE" # blue-100
+
+  # Accent Colors
+  accent:
+    emerald: "#059669"      # emerald-600
+    emerald_hover: "#047857" # emerald-700
+    emerald_light: "#D1FAE5" # emerald-100
+
+    amber: "#F59E0B"        # amber-500
+    amber_fill: "#FBBF24"   # amber-400
+    amber_light: "#FEF3C7"  # amber-100
+
+  # Semantic Colors
+  semantic:
+    success: "#10B981"  # green-500
+    error: "#EF4444"    # red-500
+    warning: "#F59E0B"  # amber-500
+
+  # Border Colors
+  border:
+    light: "#E2E8F0"    # slate-200
+    medium: "#CBD5E1"   # slate-300
+    dark: "#475569"     # slate-600
+
+# Typography
+typography:
+  # Font Families
+  fonts:
+    primary: "system-ui, -apple-system, sans-serif"
+
+  # Font Sizes
+  sizes:
+    hero: "3.75rem"       # text-6xl (60px)
+    h1: "2.25rem"         # text-4xl (36px)
+    h2: "1.875rem"        # text-3xl (30px)
+    h3: "1.5rem"          # text-2xl (24px)
+    h4: "1.25rem"         # text-xl (20px)
+    body_large: "1.125rem" # text-lg (18px)
+    body: "1rem"          # text-base (16px)
+    body_small: "0.875rem" # text-sm (14px)
+
+  # Font Weights
+  weights:
+    bold: 700       # font-bold
+    semibold: 600   # font-semibold
+    medium: 500     # font-medium
+    regular: 400    # default
+
+  # Line Heights
+  line_heights:
+    tight: 1.25     # leading-tight
+    normal: 1.5     # leading-normal
+    relaxed: 1.75   # leading-relaxed
+
+# Spacing Rhythm (Tailwind-based)
+spacing:
+  xs: "0.5rem"      # 2 (8px)
+  sm: "0.75rem"     # 3 (12px)
+  md: "1rem"        # 4 (16px)
+  lg: "1.5rem"      # 6 (24px)
+  xl: "2rem"        # 8 (32px)
+  2xl: "3rem"       # 12 (48px)
+  3xl: "4rem"       # 16 (64px)
+  4xl: "6rem"       # 24 (96px)
+
+# Elevation & Shadows
+elevation:
+  none: "none"
+  sm: "0 1px 2px 0 rgb(0 0 0 / 0.05)"                    # shadow-sm
+  md: "0 4px 6px -1px rgb(0 0 0 / 0.1)"                  # shadow-md
+  lg: "0 10px 15px -3px rgb(0 0 0 / 0.1)"                # shadow-lg
+  xl: "0 20px 25px -5px rgb(0 0 0 / 0.1)"                # shadow-xl
+
+# Component States
+states:
+  button:
+    default:
+      bg: "#2563EB"         # blue-600
+      text: "#FFFFFF"
+      border: "transparent"
+    hover:
+      bg: "#1D4ED8"         # blue-700
+    focus:
+      ring: "2px solid #DBEAFE"  # blue-100 ring
+    disabled:
+      bg: "#94A3B8"         # slate-400
+      text: "#CBD5E1"       # slate-300
+
+  input:
+    default:
+      bg: "#FFFFFF"
+      text: "#0F172A"       # slate-900
+      border: "#CBD5E1"     # slate-300
+      placeholder: "#94A3B8" # slate-400
+    focus:
+      border: "#2563EB"     # blue-600
+      ring: "2px solid #DBEAFE"
+    dark:
+      bg: "#1E1E1E"
+      text: "#E0E0E0"
+      border: "#475569"     # slate-600
+      placeholder: "#808080"
+
+# Icon Usage
+icons:
+  library: "lucide-react"
+  sizes:
+    xs: "16px"      # h-4 w-4
+    sm: "20px"      # h-5 w-5
+    md: "24px"      # h-6 w-6
+    lg: "32px"      # h-8 w-8
+    xl: "48px"      # h-12 w-12
+
+  semantic_mapping:
+    sparkles: "AI/magic functionality"
+    zap: "speed/instant results"
+    heart: "love/care themes"
+    star: "ratings/reviews"
+    users: "social proof"
+    award: "achievements"
+    check_circle: "confirmation/benefits"
+    download: "download action"
+    refresh: "reset/regenerate"
+    loader: "loading state"
+
+# Imagery Guidance
+imagery:
+  aspect_ratios:
+    square: "1:1"
+    portrait: "4:5"
+
+  guidelines:
+    - Use photorealistic baby images
+    - Maintain consistent lighting
+    - High resolution (min 512x512)
+    - Professional quality
+    - Appropriate for target audience
+
+# Accessibility (WCAG AA Compliant)
+accessibility:
+  contrast_ratios:
+    normal_text: "4.5:1 minimum"
+    large_text: "3:1 minimum"   # 24px regular or 19px bold+
+    ui_components: "3:1 minimum"
+
+  focus_indicators:
+    visible: true
+    color: "#2563EB"         # blue-600
+    ring_width: "2px"
+    ring_style: "solid"
+
+  aria_requirements:
+    - All buttons must have aria-label or descriptive text
+    - All images must have alt text
+    - Form inputs must have associated labels
+    - Interactive elements keyboard accessible
+
+  dark_mode:
+    default_scheme: "dark"
+    meta_tag: '<meta name="color-scheme" content="dark light">'
+    html_css: "html { color-scheme: dark; }"
+    input_styling: "Force background, text, placeholder, border colors"
+    avoid_outline_variant: "Use explicit className with bg/border/text"
+
+# Layout System
+layout:
+  max_width: "80rem"        # max-w-7xl (1280px)
+  container_padding: "1rem" # px-4
+  section_spacing: "4rem"   # 64px vertical
+
+  breakpoints:
+    mobile: "0px"
+    tablet: "768px"         # md
+    desktop: "1024px"       # lg
+    wide: "1280px"          # xl
+
+# Animation & Transitions
+animation:
+  duration:
+    fast: "150ms"
+    normal: "300ms"
+    slow: "500ms"
+
+  easing: "ease-in-out"
+
+  hover_transitions:
+    - "background-color"
+    - "border-color"
+    - "transform"
+    - "box-shadow"
+
+# Component Specifications
+components:
+  button:
+    height:
+      default: "3rem"       # h-12 (48px)
+      large: "3.5rem"       # h-14 (56px)
+    padding_x: "2rem"       # px-8
+    border_radius: "0.5rem" # rounded-lg
+
+  card:
+    border_width: "2px"
+    border_radius: "0.75rem" # rounded-xl
+    padding: "1.5rem"       # p-6
+    shadow: "md"
+
+  input:
+    height: "3rem"          # h-12
+    border_radius: "0.5rem" # rounded-lg
+    border_width: "1px"
+    padding_x: "1rem"       # px-4
+
+# Landing Page Sections Structure
+sections:
+  hero:
+    elements:
+      - badge (free forever announcement)
+      - icon + headline
+      - subheadline
+      - description paragraph
+      - social proof stats (3 items)
+    cta_prominence: "primary"
+
+  features:
+    layout: "3-column grid"
+    card_style: "icon + title + description"
+    hover_effect: "border color change"
+
+  cta_band:
+    background: "brand primary"
+    text_color: "white"
+    benefits_list: "4 checkmark items"
+
+  generator_form:
+    layout: "2-column (controls | preview)"
+    components:
+      - name input field
+      - generate button
+      - age progression buttons
+      - action buttons (download, reset)
+      - image preview area
+
+  testimonials:
+    layout: "3-column grid"
+    per_card:
+      - 5 star rating
+      - quote text
+      - reviewer name
+      - reviewer role
+
+  why_choose:
+    layout: "2-column grid of 4 items"
+    per_item:
+      - icon in colored box
+      - title
+      - description
+
+  final_cta:
+    style: "centered with background"
+    scroll_to_top: true
+
+  footer:
+    content:
+      - trust statements
+      - feature highlights
+      - powered by text
